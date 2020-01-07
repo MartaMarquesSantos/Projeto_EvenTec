@@ -4,7 +4,7 @@ select * from cliente;
 select nome from evento;
 #a querie mostra o nome de todos os eventos
 
-select nomec from cliente where nome like 'Dtr.%';
+select nomec from cliente where nomec like 'Dtr.%';
 #a querie mostra os cliente que tem dtr no nome;
 
 select nomec, idcliente from cliente where morada = 'Cascais';
@@ -22,7 +22,7 @@ select idparticipante from participante order by username asc;
 select profissao from palestrante where cliente_idcliente between 302 and 304;
 #a querie mostra qual a profissão do(s) palestrante(s) na(s) qual(ais) o(s) seu(s) cliente_idcliente(s) está(ão) entre 302 e 304
 
-select morada, count(nome) from cliente group by morada;
+select morada, count(nomec) from cliente group by morada;
 #a querie mostra o numero total de clientes por morada
 
 select nome, local from evento where idevento = '002'; 
@@ -37,3 +37,18 @@ select diasevento from datas;
 select email from cliente where email like '%gmail%';
 #a querie mostra os email que tem gmail
 
+select nome, diasevento from evento left join datas on evento.nome = datas.diasevento;
+#a querie mostra o nome dos eventos da tabela eventos e mostra null os dias dos eventos pois nao existe nenhuma condicao igual nas duas tabelas
+
+select idparticipante, participante_idparticipante, certificate from participante join inscricaoworkpart on participante.idparticipante = inscricaoworkpart.participante_idparticipante 
+where certificate = 1;
+#a querie mostra o id dos participantes que querem certificado
+
+select distinct horario from workshop;
+#a querie mostra o horario dos workshops
+
+select diasevento, jantar, shuttle from datas where jantar = 0 or shuttle = 1;
+#a querie mostra que dias existe jantar e shuttle ou jantar/shuttle
+
+rename table evento to eventos;
+#a queria altera o nome da tabela evento para eventos;
